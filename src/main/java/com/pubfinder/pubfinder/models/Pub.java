@@ -1,53 +1,71 @@
 package com.pubfinder.pubfinder.models;
 
-
-import jakarta.persistence.*;
-import lombok.Data;
-
-
+import io.hypersistence.utils.hibernate.type.json.JsonType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
-
-@Entity
+/**
+ * The type Pub.
+ */
+@Entity(name = "Pub")
 @Table(name = "pub")
 @Data
-public class Pub {
-    @Id
-    @GeneratedValue
-    @Column(unique = true, nullable = false)
-    private UUID id;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private Double lat;
-    @Column(nullable = false)
-    private Double lng;
-    @Column()
-    private String open;
-    @Column(nullable = false)
-    private String location;
-    @Column()
-    private String description;
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Pub implements Serializable {
 
-    public Pub() {
-    }
+  @Id
+  @GeneratedValue
+  @Column(unique = true, nullable = false)
+  private UUID id;
+  @Column(nullable = false)
+  private String name;
+  @Column(nullable = false)
+  private Double lat;
+  @Column(nullable = false)
+  private Double lng;
+  @Type(JsonType.class)
+  @Column(columnDefinition = "jsonb")
+  private Map<DayOfWeek, List<OpeningHours>> openingHours;
+  @Column(nullable = false)
+  private String location;
+  @Column
+  private String description;
+  @Column
+  private String price;
 
-    public Pub(UUID id, String name, Double lat, Double lng, String open, String location, String description) {
-        this.id = id;
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
-        this.open = open;
-        this.location = location;
-        this.description = description;
-    }
+  @Column
+  private int avgRating = 0;
 
-    public Pub(String name, Double lat, Double lng, String open, String location, String description) {
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
-        this.open = open;
-        this.location = location;
-        this.description = description;
-    }
+  @Column
+  private int avgToiletRating = 0;
+
+  @Column
+  private int avgServiceRating = 0;
+
+  @Column
+  private Volume avgVolume;
+
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "info_id")
+  private AdditionalInfo additionalInfo;
+
 }

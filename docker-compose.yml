@@ -5,5 +5,6 @@ services:
       - '15432:5432'
     environment:
       - 'POSTGRES_USER=admin'
-      - 'POSTGRES_DB=pubdb'
+      - 'POSTGRES_DB=pubservicedb'
       - 'POSTGRES_PASSWORD=admin'
+      - 'POSTGRES_INITDB_ARGS=--encoding=UTF-8'

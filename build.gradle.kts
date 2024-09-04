@@ -28,7 +28,6 @@ dependencies {
 	testImplementation("com.h2database:h2:2.2.224")
 
 	implementation("org.springframework.boot:spring-boot-starter-security")
-	testImplementation("org.springframework.security:spring-security-test")
 
 	implementation("com.giffing.bucket4j.spring.boot.starter:bucket4j-spring-boot-starter:0.11.0")
 	implementation("org.springframework.boot:spring-boot-starter-validation:3.2.3")
@@ -37,6 +36,15 @@ dependencies {
 
 	implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
 	implementation("com.github.ben-manes.caffeine:jcache")
+
+	implementation("io.hypersistence:hypersistence-utils-hibernate-63:3.7.3")
+	implementation("org.postgresql:postgresql:42.7.3")
+
+	testImplementation("org.testcontainers:postgresql:1.19.7")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.0")
+
+	implementation("com.google.guava:guava:17.0")
+	implementation("org.json:json:20240303")
 }
 
 tasks.withType<Test> {
