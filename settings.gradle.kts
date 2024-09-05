@@ -1,1 +1,1 @@
-rootProject.name = "pub-finder"
+rootProject.name = "pub-service"
