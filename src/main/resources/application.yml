@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: ${DB_USERNAME:admin}
-    url: jdbc:postgresql://${DB_URL:localhost:15432/pubdb?charSet=UTF-8}
+    url: jdbc:postgresql://${DB_URL:localhost:15432/pubservicedb?charSet=UTF-8}
     password: ${DB_PASSWORD:admin}
     tomcat:
       connection-properties: useUnicode=true;characterEncoding=utf8
@@ -48,8 +48,4 @@ bucket4j:
           unit: seconds
           refill-speed: interval
 security:
-  api-header-name: "X-API-KEY"
-  api-key: ${API_KEY:}
-  jwt-secret: ${JWT_SECRET:}
-  jwt-expiration-ms: ${JWT_EXPIRATION_MS:}
-  jwt-refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:}
+  cors-url: ${CORS_URL:http://localhost:5173}
