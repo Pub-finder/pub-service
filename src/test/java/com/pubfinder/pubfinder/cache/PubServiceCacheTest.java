@@ -35,7 +35,6 @@ public class PubServiceCacheTest {
   @Autowired
   private CacheManager cacheManager;
 
-  // Tests if cache activates for similar locations
   @Test
   public void testGetPubs_CacheHit() {
     double radius = 2.0;

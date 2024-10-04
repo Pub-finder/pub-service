@@ -4,7 +4,7 @@ WORKDIR /home/gradle/src
 RUN gradle clean bootJar --no-daemon
 
 FROM openjdk:17-jdk-alpine
-EXPOSE 8080
+EXPOSE 8082
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
 ENTRYPOINT ["java", "-jar", "/app/spring-boot-application.jar"]
