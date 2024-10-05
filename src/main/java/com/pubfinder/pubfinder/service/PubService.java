@@ -114,6 +114,7 @@ public class PubService {
    * @param pub the pub
    * @throws BadRequestException the pub param is empty
    */
+  // TODO: change to taking pub id instead of the entire object
   public void delete(Pub pub) throws BadRequestException {
     if (pub == null) {
       throw new BadRequestException();
