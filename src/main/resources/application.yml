@@ -48,7 +48,7 @@ bucket4j:
           unit: ${BUCKET_UNIT:seconds}
           refill-speed: interval
 security:
-  cors-url: ${CORS_URL:*}
+  cors-url: ${CORS_URL:http://localhost:8080}
 
 server:
   port: 8082
