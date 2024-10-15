@@ -136,4 +136,9 @@ public class PubService {
             () -> new ResourceNotFoundException(
                 "Additional Info for pub with id " + id + " was not found"));
   }
+
+  public List<PubDto> savePubs(List<Pub> pubs) {
+    List<Pub> savedPubs = pubRepository.saveAll(pubs);
+    return savedPubs.stream().map(Mapper.INSTANCE::entityToDto).toList();
+  }
 }
