@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: ${DB_USERNAME:admin}
-    url: jdbc:postgresql://${DB_URL:pub-db:5432/pubservicedb?charSet=UTF-8}
+    url: jdbc:postgresql://${DB_URL:localhost:15433/pubservicedb?charSet=UTF-8}
     password: ${DB_PASSWORD:admin}
     tomcat:
       connection-properties: useUnicode=true;characterEncoding=utf8

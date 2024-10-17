@@ -43,8 +43,7 @@ public class PubController {
     @GetMapping("/getPub/{id}")
     public ResponseEntity<PubDto> getPub(@PathVariable("id") UUID id)
             throws ResourceNotFoundException {
-        Pub pub = pubService.getPub(id);
-        return ResponseEntity.ok(Mapper.INSTANCE.entityToDto(pub));
+        return ResponseEntity.ok(pubService.getPub(id));
     }
 
     @GetMapping("/searchPubs/{term}")
