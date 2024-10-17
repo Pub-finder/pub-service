@@ -49,9 +49,11 @@ public class PubService {
    * @throws ResourceNotFoundException the resource not found exception
    */
   @Cacheable(value = "getPub")
-  public Pub getPub(UUID id) throws ResourceNotFoundException {
-    return pubRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Pub with id " + id + " was not found"));
+  public PubDto getPub(UUID id) throws ResourceNotFoundException {
+    Pub pub = pubRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Pub with id " + id + " was not found"));
+
+    return Mapper.INSTANCE.entityToDto(pub);
   }
 
   /**
@@ -135,5 +137,10 @@ public class PubService {
         .orElseThrow(
             () -> new ResourceNotFoundException(
                 "Additional Info for pub with id " + id + " was not found"));
+  }
+
+  public List<PubDto> savePubs(List<Pub> pubs) {
+    List<Pub> savedPubs = pubRepository.saveAll(pubs);
+    return savedPubs.stream().map(Mapper.INSTANCE::entityToDto).toList();
   }
 }
