@@ -69,7 +69,7 @@ public class PubControllerTest {
 
   @Test
   public void getPubByIdTest() throws Exception {
-    Pub pub = TestUtil.generateMockPub();
+    PubDto pub = TestUtil.generateMockPubDTO();
     when(pubService.getPub(any())).thenReturn(pub);
 
     mockMvc.perform(get("/pub/getPub/{id}", UUID.randomUUID()))
