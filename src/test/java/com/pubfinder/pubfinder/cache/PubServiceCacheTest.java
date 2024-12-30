@@ -75,8 +75,8 @@ public class PubServiceCacheTest {
 
     when(pubRepository.findById(pub.getId())).thenReturn(Optional.of(pub));
 
-    Pub result1 = pubService.getPub(pub.getId());
-    Pub result2 = pubService.getPub(pub.getId());
+    PubDto result1 = pubService.getPub(pub.getId());
+    PubDto result2 = pubService.getPub(pub.getId());
 
     assertEquals(result1, result2);
 
