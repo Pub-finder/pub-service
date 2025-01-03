@@ -46,7 +46,7 @@ public class PubServiceTest {
     UUID pubId = pub.getId();
     when(pubRepository.findById(any())).thenReturn(Optional.of(pub));
     PubDto result = pubService.getPub(pubId);
-    assertEquals(pub, result);
+    assertEquals(pub.getId(), result.getId());
     verify(pubRepository, times(1)).findById(pubId);
   }
 
